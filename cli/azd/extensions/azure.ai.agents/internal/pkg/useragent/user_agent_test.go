@@ -41,6 +41,8 @@ func TestDefault(t *testing.T) {
 	}
 }
 
+// This test-only guard documents internal user-agent composition without changing runtime behavior.
+// It also keeps environment forwarding expectations visible to maintainers.
 func TestValuesDoNotForwardEnvironmentValue(t *testing.T) {
 	t.Setenv(azureDevUserAgentEnv, "other-client/1.0 "+foundrySkillEnvValue)
 
