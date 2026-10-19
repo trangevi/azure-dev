@@ -36,7 +36,7 @@ Available Commands
   show         : Show the status of a prompt, hosted, or voice agent.
   state-stores : Inspect hosted-agent State Stores and manage their items.
   toolbox      : Manage toolbox service dependencies for an agent.
-  version      : Prints the version of the application
+  version      : Print extension build information
 
 Global Flags
   -C, --cwd string         : Sets the current working directory

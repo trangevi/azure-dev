@@ -1,0 +1,12 @@
+# Tier 0 (offline) — verify `azd ai agent version --short` emits script-friendly output.
+name: "version-short"
+command: "azd ai agent version --short"
+cwd: "/tmp"
+tags: ["tier:0", "cmd:version", "parallel-safe"]
+
+goals:
+  - "Wait for the command to print exactly one non-empty line containing only the extension version value."
+  - "Confirm the output does not include the labels 'Version:', 'Commit:', or 'Build Date:'."
+  - "Confirm the process exits cleanly without an error or stack trace."
+  - "Take a screenshot of the final output."
+  - "Report a finding if the output contains build metadata, spans multiple lines, is empty, or the command errors."
