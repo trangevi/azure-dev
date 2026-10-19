@@ -24,6 +24,7 @@ func TestRootCommand_PublicPreviewCommandsVisible(t *testing.T) {
 
 	for _, name := range []string{
 		"add",
+		"capabilities",
 		"code",
 		"connection",
 		"delete",
