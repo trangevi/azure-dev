@@ -13,8 +13,9 @@ import (
 
 func newVersionCommand() *cobra.Command {
 	return &cobra.Command{
-		Use:   "version",
-		Short: "Prints the version of the application",
+		Use:     "version",
+		Aliases: []string{"ver"},
+		Short:   "Prints the version of the application",
 		Example: `  # Show the installed agent extension version
   azd ai agent version`,
 		Run: func(cmd *cobra.Command, args []string) {
