@@ -257,6 +257,34 @@ func TestPreviewMetadataTagSchemaAndValidation(t *testing.T) {
 	}
 }
 
+func TestMetadataDocumentationURLSchemaAndMapping(t *testing.T) {
+	t.Parallel()
+
+	schema := loadDocSchema(t, extensionRoot(t))
+	metadata := map[string]any{
+		"documentationUrl": "https://example.com/docs/agent",
+	}
+	require.NoError(t, schema.validate(map[string]any{
+		"host": foundryAgentHost, "kind": "hosted", "name": "agent", "metadata": metadata,
+	}))
+	require.Error(t, schema.validate(map[string]any{
+		"host": foundryAgentHost,
+		"kind": "hosted",
+		"name": "agent",
+		"metadata": map[string]any{
+			"documentationUrl": "not a URL",
+		},
+	}))
+
+	service := previewService(t)
+	service.AdditionalProperties.Fields["metadata"], _ = structpb.NewValue(metadata)
+	resolved, definition, err := resolvePreviewDefinition(service, t.TempDir())
+	require.NoError(t, err)
+	request, _, err := preparePreviewRequest(resolved, definition, nil, nil)
+	require.NoError(t, err)
+	require.Equal(t, "https://example.com/docs/agent", request.Metadata["documentationUrl"])
+}
+
 func TestPreviewTagValuesRemainSafeAndCompareBeforeSanitizing(t *testing.T) {
 	for _, tc := range []struct {
 		name       string
