@@ -1,0 +1,11 @@
+# Tier 0 (offline) — `sample types` lists supported catalog template type filters.
+name: "sample-types"
+command: "azd ai agent sample types"
+cwd: "/tmp"
+tags: ["tier:0", "cmd:sample", "parallel-safe"]
+
+goals:
+  - "Wait for the command to print the supported sample template type filters."
+  - "Confirm the output contains 'azure.yaml' and 'azd' on separate lines and exits cleanly."
+  - "Take a screenshot of the final output."
+  - "Report a finding if either template type is missing, extra explanatory noise obscures the values, or the command errors."

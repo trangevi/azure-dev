@@ -1,0 +1,11 @@
+# Tier 0 (offline) — `sample languages` lists supported catalog language filters.
+name: "sample-languages"
+command: "azd ai agent sample languages"
+cwd: "/tmp"
+tags: ["tier:0", "cmd:sample", "parallel-safe"]
+
+goals:
+  - "Wait for the command to print the supported sample language filters."
+  - "Confirm the output contains 'python' and 'dotnetCsharp' on separate lines and exits cleanly."
+  - "Take a screenshot of the final output."
+  - "Report a finding if either language is missing, extra explanatory noise obscures the values, or the command errors."

@@ -31,6 +31,8 @@ and humans can both discover manifests and repos to feed back into
 	}
 
 	cmd.AddCommand(newSampleListCommand(extCtx))
+	cmd.AddCommand(newSampleLanguagesCommand())
+	cmd.AddCommand(newSampleTypesCommand())
 
 	return cmd
 }
