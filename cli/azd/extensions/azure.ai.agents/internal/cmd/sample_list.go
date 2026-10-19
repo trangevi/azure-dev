@@ -150,6 +150,9 @@ The catalog is fetched from the same source the interactive template picker uses
 		Example: `  # List all samples in the default text format
   azd ai agent sample list
 
+  # Use the catalog alias
+  azd ai agent sample catalog
+
   # List as JSON for programmatic consumption
   azd ai agent sample list --output json
 
