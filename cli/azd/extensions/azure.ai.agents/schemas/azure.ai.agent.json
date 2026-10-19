@@ -263,6 +263,11 @@
           "type": ["string", "array"],
           "items": { "type": "string" },
           "description": "Agent tags. Lists are stored as a JSON array string in Foundry metadata.tags; string values are preserved."
+        },
+        "documentationUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Public documentation URL for the agent."
         }
       },
       "additionalProperties": true

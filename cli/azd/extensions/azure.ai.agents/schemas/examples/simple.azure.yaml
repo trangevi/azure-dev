@@ -25,5 +25,7 @@ services:
     kind: hosted
     name: assistant
     description: A simple assistant.
+    metadata:
+      documentationUrl: https://example.com/docs/assistant
     env:
       LOG_LEVEL: info

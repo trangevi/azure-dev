@@ -26,12 +26,20 @@ func TestCreateAgentAPIRequestMetadataTags(t *testing.T) {
 		{name: "separate items", tags: []any{"one", "two", "", "three"}, want: `["one","two","","three"]`},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
-			metadata := map[string]any{"tags": tc.tags, "owner": "team"}
+			metadata := map[string]any{
+				"tags":             tc.tags,
+				"owner":            "team",
+				"documentationUrl": "https://example.com/docs/agent",
+			}
 			request, err := createAgentAPIRequest(AgentDefinition{
 				Kind: AgentKindHosted, Name: "agent", Metadata: &metadata,
 			}, "definition", nil, nil)
 			require.NoError(t, err)
-			require.Equal(t, map[string]string{"tags": tc.want, "owner": "team"}, request.Metadata)
+			require.Equal(t, map[string]string{
+				"tags":             tc.want,
+				"owner":            "team",
+				"documentationUrl": "https://example.com/docs/agent",
+			}, request.Metadata)
 			data, err := json.Marshal(request)
 			require.NoError(t, err)
 			var wire struct {
@@ -40,6 +48,7 @@ func TestCreateAgentAPIRequestMetadataTags(t *testing.T) {
 			require.NoError(t, json.Unmarshal(data, &wire))
 			require.Contains(t, wire.Metadata, "tags")
 			require.Equal(t, tc.want, wire.Metadata["tags"])
+			require.Equal(t, "https://example.com/docs/agent", wire.Metadata["documentationUrl"])
 			require.Equal(t, tc.tags, metadata["tags"], "mapping must not mutate authored tags")
 		})
 	}
