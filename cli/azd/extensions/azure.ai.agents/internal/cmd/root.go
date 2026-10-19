@@ -50,7 +50,7 @@ func NewRootCommand() *cobra.Command {
 		setupDebugLogging(cmd.Flags())
 		operation := telemetryOperation(cmd.CommandPath())
 		switch operation {
-		case "deploy", "init", "listen", "metadata", "version":
+		case "capabilities", "deploy", "init", "listen", "metadata", "version":
 		default:
 			telemetryReporter.reportProject(cmd.Context(), operation)
 		}
@@ -79,6 +79,7 @@ func NewRootCommand() *cobra.Command {
 	rootCmd.AddCommand(azdext.NewListenCommand(func(host *azdext.ExtensionHost) {
 		configureExtensionHostWithTelemetry(host, telemetryReporter)
 	}))
+	rootCmd.AddCommand(newCapabilitiesCommand())
 	rootCmd.AddCommand(newVersionCommand())
 	rootCmd.AddCommand(newInitCommand(extCtx))
 	rootCmd.AddCommand(newAgentServiceAddCommand(extCtx))

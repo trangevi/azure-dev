@@ -16,6 +16,7 @@ Usage
 
 Available Commands
   add          : Add a file-backed Agent service to the current azd project.
+  capabilities : Lists the agent capabilities supported by this extension
   code         : Manage agent source code. (Preview)
   connection   : Manage connection service dependencies for an agent.
   delete       : Delete a prompt, hosted, or voice agent.
