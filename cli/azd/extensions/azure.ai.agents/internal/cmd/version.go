@@ -12,13 +12,34 @@ import (
 )
 
 func newVersionCommand() *cobra.Command {
-	return &cobra.Command{
+	var short bool
+
+	cmd := &cobra.Command{
 		Use:   "version",
-		Short: "Prints the version of the application",
+		Short: "Print extension build information",
 		Example: `  # Show the installed agent extension version
-  azd ai agent version`,
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf("Version: %s\nCommit: %s\nBuild Date: %s\n", version.Version, version.Commit, version.BuildDate)
+  azd ai agent version
+
+  # Print only the version number for scripts
+  azd ai agent version --short`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if short {
+				_, err := fmt.Fprintln(cmd.OutOrStdout(), version.Version)
+				return err
+			}
+
+			_, err := fmt.Fprintf(
+				cmd.OutOrStdout(),
+				"Version: %s\nCommit: %s\nBuild Date: %s\n",
+				version.Version,
+				version.Commit,
+				version.BuildDate,
+			)
+			return err
 		},
 	}
+
+	cmd.Flags().BoolVar(&short, "short", false, "Print only the version number")
+
+	return cmd
 }
