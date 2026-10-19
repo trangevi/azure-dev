@@ -1,0 +1,11 @@
+# Tier 0 (offline) — `version --short` prints only the extension version value.
+name: "version-short"
+command: "azd ai agent version --short"
+cwd: "/tmp"
+tags: ["tier:0", "cmd:version", "parallel-safe"]
+
+goals:
+  - "Wait for the command to print one non-empty version value."
+  - "Confirm the output does not include the labels 'Version:', 'Commit:', or 'Build Date:' and exits cleanly."
+  - "Take a screenshot of the final output."
+  - "Report a finding if the output is empty, contains build metadata labels, spans multiple values, or the command errors."

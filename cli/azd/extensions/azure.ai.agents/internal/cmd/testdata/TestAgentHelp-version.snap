@@ -3,6 +3,9 @@ Prints the version of the application
 Usage
   azd ai agent version [flags]
 
+Flags
+      --short : Print only the version value.
+
 Global Flags
   -C, --cwd string         : Sets the current working directory
       --debug              : Enables debug and diagnostics logging
@@ -14,3 +17,6 @@ Global Flags
 Examples
   Show the installed agent extension version
     azd ai agent version
+
+  Show only the semantic version value
+    azd ai agent version --short

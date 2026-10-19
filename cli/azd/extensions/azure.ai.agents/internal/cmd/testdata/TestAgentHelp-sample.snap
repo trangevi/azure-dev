@@ -9,7 +9,9 @@ Usage
   azd ai agent sample [command]
 
 Available Commands
-  list : List available agent samples that can be used with `azd ai agent init -t`.
+  languages : List language filters supported by the sample catalog.
+  list      : List available agent samples that can be used with `azd ai agent init -t`.
+  types     : List template type filters supported by the sample catalog.
 
 Global Flags
   -C, --cwd string         : Sets the current working directory
