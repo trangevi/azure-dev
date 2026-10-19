@@ -52,6 +52,14 @@ func fixtureTemplates() []AgentTemplate {
 	}
 }
 
+func TestSampleListCommandAliases(t *testing.T) {
+	t.Parallel()
+
+	cmd := newSampleListCommand(nil)
+
+	require.ElementsMatch(t, []string{"ls", "catalog"}, cmd.Aliases)
+}
+
 func TestValidateSampleListFlags(t *testing.T) {
 	t.Parallel()
 
