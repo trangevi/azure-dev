@@ -58,6 +58,7 @@ func TestSampleListCommandAliases(t *testing.T) {
 	cmd := newSampleListCommand(nil)
 
 	require.ElementsMatch(t, []string{"ls", "catalog"}, cmd.Aliases)
+	require.Equal(t, "List curated agent samples for use with `azd ai agent init -t`.", cmd.Short)
 }
 
 func TestValidateSampleListFlags(t *testing.T) {

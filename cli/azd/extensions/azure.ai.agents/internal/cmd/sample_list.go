@@ -138,7 +138,7 @@ func newSampleListCommand(extCtx *azdext.ExtensionContext) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "list",
 		Aliases: []string{"ls", "catalog"},
-		Short:   "List available agent samples that can be used with `azd ai agent init -t`.",
+		Short:   "List curated agent samples for use with `azd ai agent init -t`.",
 		Long: `List available agent samples from the curated catalog.
 
 Each entry includes the manifest URL or repo URL that can be passed back into
